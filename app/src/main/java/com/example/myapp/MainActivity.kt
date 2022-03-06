@@ -7,9 +7,24 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val signInLauncher = registerForActivityResult(
+        FirebaseAuthUIActivityResultContract()
+    ) { res ->
+        this.onSignInResult(res)
+    }
+
+    private fun onSignInResult(res: FirebaseAuthUIAuthenticationResult?) {
+        TODO("Not yet implemented")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("testlogs", "in onCreate")
@@ -26,6 +41,28 @@ class MainActivity : AppCompatActivity() {
             loginbutton.setOnClickListener {
                 val intent = Intent(this, MainActivity3::class.java)
                 startActivity(intent)
+
+                val providers = arrayListOf(
+                    AuthUI.IdpConfig.EmailBuilder().build(),
+                    AuthUI.IdpConfig.PhoneBuilder().build(),
+                    AuthUI.IdpConfig.GoogleBuilder().build())
+
+                val signInIntent = AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(providers)
+                    .build()
+                signInLauncher.launch(signInIntent)
+            }
+
+            fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
+                val response = result.idpResponse
+                if (result.resultCode == RESULT_OK) {
+                    // Successfully signed in
+                    val user = FirebaseAuth.getInstance().currentUser
+                    // ...
+                } else {
+
+                }
             }
         }
 
