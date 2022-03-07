@@ -30,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         Log.d("testlogs", "in onCreate")
         setContentView(R.layout.activity_main)
 
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.PhoneBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build())
+
         val registerbutton = findViewById<Button>(R.id.main_activity_button_input)
         registerbutton.setOnClickListener {
             Log.d("testlogs", "ClickRegister")
@@ -42,11 +47,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity3::class.java)
                 startActivity(intent)
 
-                val providers = arrayListOf(
-                    AuthUI.IdpConfig.EmailBuilder().build(),
-                    AuthUI.IdpConfig.PhoneBuilder().build(),
-                    AuthUI.IdpConfig.GoogleBuilder().build())
-
                 val signInIntent = AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setAvailableProviders(providers)
@@ -58,8 +58,10 @@ class MainActivity : AppCompatActivity() {
                 val response = result.idpResponse
                 if (result.resultCode == RESULT_OK) {
                     // Successfully signed in
-                    val user = FirebaseAuth.getInstance().currentUser
-                    // ...
+                    val authUser = FirebaseAuth.getInstance().currentUser
+                    val user = authUser?.let{
+                            it1 -> User(authUser.email.toString(), it1.uid)
+                    }
                 } else {
 
                 }
