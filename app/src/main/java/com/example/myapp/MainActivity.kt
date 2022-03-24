@@ -1,4 +1,5 @@
 package com.example.myapp
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,14 +16,14 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
+
+    private fun onSignInResult(res: FirebaseAuthUIAuthenticationResult?) {
+        TODO("Not yet implemented")
+    }
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
     ) { res ->
         this.onSignInResult(res)
-    }
-
-    private fun onSignInResult(res: FirebaseAuthUIAuthenticationResult?) {
-        TODO("Not yet implemented")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.PhoneBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build())
+            AuthUI.IdpConfig.GoogleBuilder().build()
+        )
 
         val registerbutton = findViewById<Button>(R.id.main_activity_button_input)
         registerbutton.setOnClickListener {
@@ -42,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
 
-        val loginbutton = findViewById<TextView>(R.id.simpleTextView)
+            val loginbutton = findViewById<TextView>(R.id.simpleTextView)
             loginbutton.setOnClickListener {
                 val intent = Intent(this, MainActivity3::class.java)
                 startActivity(intent)
@@ -55,22 +57,25 @@ class MainActivity : AppCompatActivity() {
             }
 
             fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-                val response = result.idpResponse
-                if (result.resultCode == RESULT_OK) {
-                    // Successfully signed in
-                    val authUser = FirebaseAuth.getInstance().currentUser
-                    val user = authUser?.let{
-                            it1 -> User(authUser.email.toString(), it1.uid)
+                val response = result.idpResponse // результат с экрана Firebase Auth
+                if (result.resultCode == RESULT_OK) { // если результат не ОК
+                    // Успешно вошли
+                    val authUser = FirebaseAuth.getInstance().currentUser // создаем обьект текущего пользователя Firebase Auth
+                    val user = authUser?.let { it1 ->
+                        User(authUser.email.toString(), it1.uid)// uid инструмент для отслеживания действий юзера на разных этапах
+                    getDatabasePath("users")
+                        onBackPressed() // для переброса на главный экран после регистрации
                     }
-                } else {
+                }
+                else   { // должны обработать ошибку
 
                 }
             }
         }
 
-        }
-
     }
+
+}
 
 
 
