@@ -59,26 +59,13 @@
         app:layout_constraintTop_toBottomOf="@+id/main_activity_password_input" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
-        android:text="Already registered. Login me!"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_activity_button_input" />
-
-    <TextView
         android:id="@+id/simpleTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Login"
+        android:text="LOGIN"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="21sp"
         app:layout_constraintTop_toBottomOf="@+id/main_activity_button_input"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" /> <!--center horizontal gravity-->
