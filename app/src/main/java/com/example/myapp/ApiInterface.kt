@@ -4,14 +4,15 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ApiInterface {
-    @GET("api/users?page=2")
-    fun getMovies() :Call<List<Movie>>
+    @GET("3/movie/popular")
+    fun getMovies(@Query("api_key") sort: String) : Call<List<Movies>>
 
     companion object {
 
-        var BASE_URL = "https://reqres.in/"
+        var BASE_URL = "https://api.themoviedb.org/"
 
         fun create() : ApiInterface {
 

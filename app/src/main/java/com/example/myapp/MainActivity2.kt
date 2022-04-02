@@ -1,6 +1,7 @@
 package com.example.myapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,22 +29,23 @@ class MainActivity2 : AppCompatActivity() {
             data.add(ItemsViewModel(R.drawable.ic_baseline_folder_24, "Item " + i))
         }
 
-        // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(data)
-
-        // Setting the Adapter with the recyclerview
-        recyclerview.adapter = adapter
-        val apiInterface = ApiInterface.create().getMovies()
+        val apiInterface = ApiInterface.create().getMovies("4fd2bb4bb63b014764cb0122da179334")
 
         //apiInterface.enqueue( Callback<List<Movie>>())
-        apiInterface.enqueue( object : Callback<List<Movie>> {
-            override fun onResponse(call: Call<List<Movie>>?, response: Response<List<Movie>>?) {
+        apiInterface.enqueue( object : Callback<List<Movies>> {
+            override fun onResponse(call: Call<List<Movies>>?, response: Response<List<Movies>>?) {
+                Log.d("testLogs", "OnResponse Success")
+                // This will pass the ArrayList to our Adapter
+                val adapter = CustomAdapter(response?.body())
+
+                // Setting the Adapter with the recyclerview
+                recyclerview.adapter = adapter
 
 //                if(response?.body() != null)
 //                    recyclerAdapter.setMovieListItems(response.body()!!)
             }
 
-            override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<Movies>>?, t: Throwable?) {
 
             }
         })

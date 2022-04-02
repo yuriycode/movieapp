@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.util.ArrayList
 
-class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
-
+class CustomAdapter(private val mList: List<Movies>?) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
@@ -22,19 +22,18 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val ItemsViewModel = mList[position]
+        val ItemsViewModel = mList?.get(position)
 
-        // sets the image to the imageview from our itemHolder class
-        holder.imageView.setImageResource(ItemsViewModel.image)
-
-        // sets the text to the textview from our itemHolder class
-        holder.textView.text = ItemsViewModel.text
+//        // sets the image to the imageview from our itemHolder class
+//        holder.imageView.setImageResource(ItemsViewModel?.image)
+//
+        holder.textView.text = ItemsViewModel?.title
 
     }
 
     // return the number of the items in the list
     override fun getItemCount(): Int {
-        return mList.size
+        return mList!!.size
     }
 
     // Holds the views for adding it to image and text
