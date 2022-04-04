@@ -1,6 +1,6 @@
 package com.example.myapp
 
-data class DataX(
+data class Data(
     val avatar: String,
     val email: String,
     val first_name: String,

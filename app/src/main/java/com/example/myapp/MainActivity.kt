@@ -12,6 +12,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.auth.User
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,7 +63,6 @@ class MainActivity : AppCompatActivity() {
                     // Успешно вошли
                     val authUser = FirebaseAuth.getInstance().currentUser // создаем обьект текущего пользователя Firebase Auth
                     val user = authUser?.let { it1 ->
-                        User(authUser.email.toString(), it1.uid)// uid инструмент для отслеживания действий юзера на разных этапах
                     getDatabasePath("users")
                         onBackPressed() // для переброса на главный экран после регистрации
                     }
