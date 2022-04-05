@@ -15,12 +15,12 @@
 
         <ImageView
             android:id="@+id/imageview"
-            android:layout_width="46dp"
+            android:layout_width="40dp"
             android:layout_height="40dp" />
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="55dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="15dp"
