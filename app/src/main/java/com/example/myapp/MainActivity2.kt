@@ -36,7 +36,7 @@ class MainActivity2 : AppCompatActivity() {
             override fun onResponse(call: Call<List<Movies>>?, response: Response<List<Movies>>?) {
                 Log.d("testLogs", "OnResponse Success")
                 // This will pass the ArrayList to our Adapter
-                val adapter = CustomAdapter(response?.body())
+                val adapter = CustomAdapter(response?.body()?.results)
 
                 // Setting the Adapter with the recyclerview
                 recyclerview.adapter = adapter
