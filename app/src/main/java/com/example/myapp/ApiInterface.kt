@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ApiInterface {
     @GET("3/movie/popular")
-    fun getMovies(@Query("api_key") sort: String) :Call<List<Movie>>
+    fun getMovies(@Query("api_key") sort: String) :Call<Movies>
 
     companion object {
 

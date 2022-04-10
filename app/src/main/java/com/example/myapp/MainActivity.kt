@@ -18,17 +18,20 @@ import com.google.firebase.firestore.auth.User
 class MainActivity : AppCompatActivity() {
 
 
-    private fun onSignInResult(res: FirebaseAuthUIAuthenticationResult?) {
+    private fun onSignInResult(res:FirebaseAuthUIAuthenticationResult?) {
         TODO("Not yet implemented")
     }
-    private val signInLauncher = registerForActivityResult(
-        FirebaseAuthUIActivityResultContract()
-    ) { res ->
-        this.onSignInResult(res)
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+//    private val signInLauncher = registerForActivityResult(
+//        FirebaseAuthUIActivityResultContract()
+//    ) { res ->
+//        this.onSignInResult(res)
+//    }
+
+    override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
+        val intent = Intent(this, MainActivity2::class.java)
+        startActivity(intent)
         Log.d("testlogs", "in onCreate")
         setContentView(R.layout.activity_main)
 
@@ -44,38 +47,41 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "Registration complete.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
-
-            val loginbutton = findViewById<TextView>(R.id.simpleTextView)
-            loginbutton.setOnClickListener {
-                val intent = Intent(this, MainActivity3::class.java)
-                startActivity(intent)
-
-                val signInIntent = AuthUI.getInstance()
-                    .createSignInIntentBuilder()
-                    .setAvailableProviders(providers)
-                    .build()
-                signInLauncher.launch(signInIntent)
-            }
-
-            fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-                val response = result.idpResponse // результат с экрана Firebase Auth
-                if (result.resultCode == RESULT_OK) { // если результат не ОК
-                    // Успешно вошли
-                    val authUser = FirebaseAuth.getInstance().currentUser // создаем обьект текущего пользователя Firebase Auth
-                    val user = authUser?.let { it1 ->
-                    getDatabasePath("users")
-                        onBackPressed() // для переброса на главный экран после регистрации
-                    }
-                }
-                else   { // должны обработать ошибку
-
-                }
-            }
         }
-
     }
-
 }
 
-
+//            val loginbutton = findViewById<TextView>(R.id.simpleTextView)
+//            loginbutton.setOnClickListener {
+//                val intent = Intent(this, MainActivity3::class.java)
+//                startActivity(intent)
+//
+//                val signInIntent = AuthUI.getInstance()
+//                    .createSignInIntentBuilder()
+//                    .setAvailableProviders(providers)
+//                    .build()
+//                signInLauncher.launch(signInIntent)
+//            }
+//
+//            fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
+//                val response = result.idpResponse // результат с экрана Firebase Auth
+//                if (result.resultCode == RESULT_OK) { // если результат не ОК
+//                    // Успешно вошли
+//                    val authUser = FirebaseAuth.getInstance().currentUser // создаем обьект текущего пользователя Firebase Auth
+//                    val user = authUser?.let { it1 ->
+//                    getDatabasePath("users")
+//                        onBackPressed() // для переброса на главный экран после регистрации
+//                    }
+//                }
+//                else   { // должны обработать ошибку
+//
+//                }
+//            }
+//        }
+//
+//    }
+//
+//}
+//
+//
 
