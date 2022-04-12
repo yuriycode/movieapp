@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/movie_details_title" />
+        app:layout_constraintTop_toBottomOf="@+id/movie_details_title" >
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/movies_details_image_banner"
@@ -33,6 +33,86 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movies_details_header_container_card" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/movies_details_body_container_card"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movies_details_header_container_card">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/movies_details_body_container_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp">
+
+    <TextView
+        android:id="@+id/movies_details_body_overview_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Overview"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/movies_details_date_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Release Date:"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movies_details_body_overview_label" />
+
+        <TextView
+            android:id="@+id/movies_details_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23 june 2001"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/movies_details_date_label"
+            app:layout_constraintTop_toBottomOf="@+id/movies_details_body_overview_label"/>
+
+        <TextView
+            android:id="@+id/movies_details_score_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score:"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movies_details_date_label" />
+
+        <TextView
+            android:id="@+id/movies_details_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="7.9"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/movies_details_score_label"
+            app:layout_constraintTop_toBottomOf="@+id/movies_details_date" />
+
+        <TextView
+            android:id="@+id/movies_details_body_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OverviewOverviewOverviewOverviewOverviewOverviewOverviewOverviewOverviewOverviewOverview"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movies_details_score_label" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
