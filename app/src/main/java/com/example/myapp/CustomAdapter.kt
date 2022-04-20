@@ -46,7 +46,7 @@ class CustomAdapter(private val mList:List<Result>?,
 
         init {
             ItemView.setOnClickListener {
-                mList?.get(position)?.id?.let { it -> mItemClickListener.onItemClick(it) }
+                mItemClickListener.onItemClick(adapterPosition)
             }
         }
     }
