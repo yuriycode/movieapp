@@ -1,5 +1,6 @@
 package com.example.myapp
 
+import android.content.Intent
 import android.icu.text.Transliterator
 import android.os.Bundle
 import android.widget.Toast
@@ -32,7 +33,7 @@ class MainActivity2 : AppCompatActivity() {
         }
 
 
-        val apiInterface = ApiInterface.create().getMovies("4fd2bb4bb63b014764cb0122da179334")
+        val apiInterface = ApiInterface.create().getMovies ("4fd2bb4bb63b014764cb0122da179334")
 
         //apiInterface.enqueue( Callback<List<Movie>>())
         apiInterface.enqueue(object : Callback<Movies>, CustomAdapter.ItemClickListener {
@@ -52,8 +53,10 @@ class MainActivity2 : AppCompatActivity() {
             override fun onFailure(call: Call<Movies>, t:Throwable) {
             }
 
-            override fun onItemClick(position:Int) {
-                Toast.makeText(this@MainActivity2, "click $position", Toast.LENGTH_SHORT).show()
+            override fun onItemClick(id: Int) {
+                val intent = Intent(this@MainActivity2, MainActivity3::class.java)
+                intent.putExtra("id", id)
+                startActivity(intent)
             }
         })
 
